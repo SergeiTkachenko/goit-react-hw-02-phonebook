@@ -1,9 +1,10 @@
 import { Layout } from './Layout';
 import { GlobalStyle } from './GlobalStyle';
 import { Component } from 'react';
-import { Form } from './Form/Form';
+import { AddForm } from './Form/Form';
 import { ContactList } from './ContactsList/ContactList';
 import { ContactFilter } from './ContactsFilter/ContactFilter';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
@@ -14,6 +15,30 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
+  };
+
+  // addContact = newContact => {
+  //   this.satState(prevState => {
+  //     return {
+  //       contacts: { ...prevState.contacts, newContact },
+  //     };
+  //   });
+  // };
+  addContact = (newName, number) => {
+    const isNotUnique = this.state.contacts.some(
+      ({ name }) => name === newName
+    );
+    if (isNotUnique) {
+      return alert(`${newName} is already in contacts.`);
+    }
+    const newContact = {
+      id: nanoid(),
+      name: newName,
+      number,
+    };
+    this.setState(({ contacts }) => ({
+      contacts: [newContact, ...contacts],
+    }));
   };
 
   deleteContact = ContactId => {
@@ -27,7 +52,7 @@ export class App extends Component {
   render() {
     return (
       <Layout>
-        <Form />
+        <AddForm onSubmit={this.addContact} />
         <ContactFilter />
         <ContactList
           items={this.state.contacts}
