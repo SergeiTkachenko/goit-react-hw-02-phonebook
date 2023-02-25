@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Filter } from './ContactFilter.styled';
 
 export const ContactFilter = ({ value, onChange }) => {
@@ -8,4 +9,9 @@ export const ContactFilter = ({ value, onChange }) => {
       <input type="text" value={value} onChange={onChange} />
     </Filter>
   );
+};
+
+ContactFilter.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };

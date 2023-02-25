@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Formik, Field } from 'formik';
 import { FormField, Form, ErrorMessage } from './Form.styled';
 import { object, string } from 'yup';
@@ -57,4 +58,8 @@ export const AddForm = ({ onSubmit }) => {
       </Formik>
     </div>
   );
+};
+
+AddForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
