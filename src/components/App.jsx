@@ -17,13 +17,6 @@ export class App extends Component {
     filter: '',
   };
 
-  // addContact = newContact => {
-  //   this.satState(prevState => {
-  //     return {
-  //       contacts: { ...prevState.contacts, newContact },
-  //     };
-  //   });
-  // };
   addContact = (newName, number) => {
     const isNotUnique = this.state.contacts.some(
       ({ name }) => name === newName
@@ -41,6 +34,10 @@ export class App extends Component {
     }));
   };
 
+  changeFilter = e => {
+    this.setState({ filter: e.currentTarget.value });
+  };
+
   deleteContact = ContactId => {
     this.setState(prevState => {
       return {
@@ -50,14 +47,16 @@ export class App extends Component {
   };
 
   render() {
+    const visibleContacts = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+
+    const { filter } = this.state;
     return (
       <Layout>
         <AddForm onSubmit={this.addContact} />
-        <ContactFilter />
-        <ContactList
-          items={this.state.contacts}
-          onDelete={this.deleteContact}
-        />
+        <ContactFilter value={filter} onChange={this.changeFilter} />
+        <ContactList items={visibleContacts} onDelete={this.deleteContact} />
         <GlobalStyle />
       </Layout>
     );

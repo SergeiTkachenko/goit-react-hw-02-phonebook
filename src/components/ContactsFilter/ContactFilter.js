@@ -1,11 +1,11 @@
-// import { Component } from 'react';
+import { Filter } from './ContactFilter.styled';
 
-export const ContactFilter = () => {
+export const ContactFilter = ({ value, onChange }) => {
   return (
-    <div>
-      <h2>Contacts</h2>
-      <span>Find contact by name</span>
-      <input />
-    </div>
+    <Filter>
+      <h3>Contacts</h3>
+      Find contact by name
+      <input type="text" value={value} onChange={onChange} />
+    </Filter>
   );
 };

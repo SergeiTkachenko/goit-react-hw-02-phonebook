@@ -7,9 +7,10 @@ export const Form = styled(FormikForm)`
   justify-content: center;
   display: flex;
   width: 400px;
-  gap: 20px;
+  gap: 10px;
   flex-direction: column;
   padding: 10px;
+  margin: 10px auto;
 
   border: 1px solid black;
   border-radius: 10px;
@@ -24,7 +25,7 @@ export const FormField = styled.label`
 
   border: 1px solid black;
   border-radius: 10px;
-  padding: 20px 10px;
+  padding: 10px 10px;
   background-color: gray;
 `;
 
